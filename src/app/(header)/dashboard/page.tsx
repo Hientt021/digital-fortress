@@ -1,6 +1,6 @@
 "use client";
 import DataTable from "@/components/DataTable";
-import { Stack, TextField } from "@mui/material";
+import { Stack, TextField, Typography } from "@mui/material";
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import * as React from "react";
 
@@ -27,7 +27,7 @@ export default function Dashboard(props: IDashboardProps) {
       renderCell: (params: GridRenderCellParams<any>) => (
         <div>
           {params.value.map((el: string) => (
-            <p>{el}</p>
+            <Typography key={el}>{el}</Typography>
           ))}
         </div>
       ),
@@ -46,9 +46,7 @@ export default function Dashboard(props: IDashboardProps) {
     });
     const data = await res.json();
     if (data) {
-      console.log(data);
       const formattedData = data.results.map((el: any) => formatData(el));
-      console.log(formattedData);
       setList(formattedData);
     }
   };
